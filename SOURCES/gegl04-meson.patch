@@ -1,0 +1,21 @@
+diff -up gegl-0.4.34/gegl/meson.build.orig gegl-0.4.34/gegl/meson.build
+--- gegl-0.4.34/gegl/meson.build.orig	2022-11-04 14:51:55.429964084 +0100
++++ gegl-0.4.34/gegl/meson.build	2022-11-04 14:52:57.611332244 +0100
+@@ -92,8 +92,7 @@ install_headers(gegl_headers,
+ gegl_ldflags = os_osx ? ['-framework', 'OpenCL'] : []
+ 
+ opencl_dep = declare_dependency(
+-    sources : [opencl_headers],
+-    link_with : [gegl_sources],
++  sources : [opencl_headers],
+ )
+ 
+ gegl_lib = library(api_name,
+@@ -105,6 +104,7 @@ gegl_lib = library(api_name,
+     gio,
+     math,
+     gmodule,
++    opencl_dep,
+   ],
+   c_args: gegl_cflags,
+   link_args: gegl_ldflags,

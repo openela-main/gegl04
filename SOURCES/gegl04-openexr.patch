@@ -1,0 +1,12 @@
+Index: gegl-0.4.30/operations/external/exr-save.cc
+===================================================================
+--- gegl-0.4.30.orig/operations/external/exr-save.cc
++++ gegl-0.4.30/operations/external/exr-save.cc
+@@ -39,6 +39,7 @@ extern "C" {
+ } /* extern "C" */
+ 
+ #include <exception>
++#include <ImfFrameBuffer.h>
+ #include <ImfTiledOutputFile.h>
+ #include <ImfOutputFile.h>
+ #include <ImfChannelList.h>
