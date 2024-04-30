@@ -2,7 +2,7 @@
 
 Name:           gegl04
 Version:        0.4.34
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Graph based image processing framework
 
 # The binary is under the GPL, while the libs are under LGPL.
@@ -15,6 +15,7 @@ Patch0:         gegl04-openexr.patch
 Patch1:         gegl04-gtk.patch
 # https://gitlab.gnome.org/GNOME/gegl/-/commit/54f760de6a0e14487ccfb033e270aa6a80ee66e2
 Patch2:         gegl04-meson.patch
+Patch3:         gegl04-raw-load-LibRaw-0.21.0.patch
 
 BuildRequires:  chrpath
 BuildRequires:  enscript
@@ -38,7 +39,7 @@ BuildRequires:  pkgconfig(glib-2.0) >= 2.44.0
 BuildRequires:  pkgconfig(jasper) >= 1.900.1
 BuildRequires:  pkgconfig(json-glib-1.0)
 BuildRequires:  pkgconfig(lcms2) >= 2.8
-BuildRequires:  pkgconfig(libraw) >= 0.15.4
+BuildRequires:  pkgconfig(libraw) >= 0.21.1
 BuildRequires:  pkgconfig(libpng) >= 1.6.0
 BuildRequires:  pkgconfig(librsvg-2.0) >= 2.40.6
 BuildRequires:  pkgconfig(libv4l2) >= 1.0.1
@@ -175,6 +176,10 @@ chrpath --delete %{buildroot}%{_libdir}/gegl-%{apiver}/*.so
 
 
 %changelog
+* Tue Oct 03 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.4.34-3
+- Rebuild against new LibRaw soname
+Resolves: RHEL-770
+
 * Fri Nov 04 2022 Tomas Popela <tpopela@redhat.com> - 0.4.34-2
 - Fix FTBFS for a possible Meson rebase
 - Resolves: rhbz#2140107
