@@ -1,21 +1,18 @@
 %global apiver 0.4
 
 Name:           gegl04
-Version:        0.4.34
-Release:        3%{?dist}
+Version:        0.4.62
+Release:        1%{?dist}
 Summary:        Graph based image processing framework
 
 # The binary is under the GPL, while the libs are under LGPL.
 # The main package only installs the libs, which makes the license:
 License:        LGPLv3+
-URL:            http://www.gegl.org/
+URL:            https://www.gegl.org/
 Source0:        http://download.gimp.org/pub/gegl/%{apiver}/gegl-%{version}.tar.xz
 
 Patch0:         gegl04-openexr.patch
 Patch1:         gegl04-gtk.patch
-# https://gitlab.gnome.org/GNOME/gegl/-/commit/54f760de6a0e14487ccfb033e270aa6a80ee66e2
-Patch2:         gegl04-meson.patch
-Patch3:         gegl04-raw-load-LibRaw-0.21.0.patch
 
 BuildRequires:  chrpath
 BuildRequires:  enscript
@@ -29,8 +26,9 @@ BuildRequires:  perl-interpreter
 BuildRequires:  ruby
 BuildRequires:  suitesparse-devel
 BuildRequires:  vala
+BuildRequires:  asciidoc
 
-BuildRequires:  pkgconfig(babl) >= 0.1.78
+BuildRequires:  pkgconfig(babl-0.1) >= 0.1.100
 BuildRequires:  pkgconfig(cairo) >= 1.12.2
 BuildRequires:  pkgconfig(exiv2) >= 0.25
 BuildRequires:  pkgconfig(gdk-pixbuf-2.0) >= 2.32.0
@@ -176,6 +174,12 @@ chrpath --delete %{buildroot}%{_libdir}/gegl-%{apiver}/*.so
 
 
 %changelog
+* Tue May 20 2025 Josef Ridky <jridky@redhat.com> - 0.4.62-1
+- New upstream release 0.4.62 (RHEL-88143)
+
+* Thu Apr 24 2025 Josef Ridky <jridky@redhat.com> - 0.4.58-1
+- New upstream release 0.4.58 (RHEL-88143)
+ 
 * Tue Oct 03 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.4.34-3
 - Rebuild against new LibRaw soname
 Resolves: RHEL-770
