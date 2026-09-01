@@ -2,7 +2,7 @@
 
 Name:           gegl04
 Version:        0.4.62
-Release:        1%{?dist}.1
+Release:        1%{?dist}.2
 Summary:        Graph based image processing framework
 
 # The binary is under the GPL, while the libs are under LGPL.
@@ -15,6 +15,8 @@ Patch0:         gegl04-openexr.patch
 Patch1:         gegl04-gtk.patch
 # https://github.com/GNOME/gegl/commit/d32f1badb4bde1d6e8137f687d9ee1195768d4ed
 Patch2:         gegl04-CVE-2026-2050.patch
+# https://gitlab.gnome.org/GNOME/gegl/-/commit/d3d262008299341c5b032b354021632ceadb2799
+Patch3:         gegl04-CVE-2026-18300.patch
 
 BuildRequires:  chrpath
 BuildRequires:  enscript
@@ -176,6 +178,9 @@ chrpath --delete %{buildroot}%{_libdir}/gegl-%{apiver}/*.so
 
 
 %changelog
+* Sat Aug 22 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.4.62-1.2
+- Fix CVE-2026-18300: bounds check in rgbe_read_scanlines
+
 * Thu Jun 25 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.4.62-1.1
 - Fix CVE-2026-2050: buffer overflow in rgbe_read_new_rle
 - Resolves: RHEL-188264
