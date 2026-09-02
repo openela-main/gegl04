@@ -2,7 +2,7 @@
 
 Name:                 gegl04
 Version:              0.4.4
-Release:              7%{?dist}
+Release:              7%{?dist}.1
 Summary:              Graph based image processing framework
 
 # The binary is under the GPL, while the libs are under LGPL.
@@ -12,6 +12,9 @@ URL:                  http://www.gegl.org/
 Source0:              http://download.gimp.org/pub/gegl/%{apiver}/gegl-%{version}.tar.bz2
 
 Patch1:               gegl-CVE-2021-45463.patch
+
+# https://gitlab.gnome.org/GNOME/gegl/-/commit/d3d262008299341c5b032b354021632ceadb2799
+Patch2:               gegl-CVE-2026-18300.patch
 
 BuildRequires:        chrpath
 BuildRequires:        enscript
@@ -99,6 +102,7 @@ GEGL library.
 %prep
 %setup -q -n gegl-%{version}
 %patch1 -p1 -b .CVE-2021-45463
+%patch2 -p1 -b .CVE-2026-18300
 
 %build
 %configure --disable-static
@@ -151,6 +155,9 @@ find %{buildroot} -name '*.la' -delete
 
 
 %changelog
+* Sat Aug 22 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.4.4-7.1
+- Fix CVE-2026-18300
+
 * Tue Jan 11 2022 Josef Ridky <jridky@redhat.com> - 0.4.4-7
 - Fix CVE-2021-45463 (#2035424)
 
